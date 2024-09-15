@@ -12,7 +12,7 @@ CHUNKS = 100
 RATE = 44100
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-AMP = 2000
+AMP = 1000
 FREQUENCY = 440  # Hz
 
 
@@ -33,10 +33,11 @@ class ListenerTask(QObject):
                 buffer=in_data, count=frame_count, dtype=np.int16
             )
             fft = np.fft.rfft(audio_data)
-            N = len(fft)
-            n = np.arange(N)
-            T = N / RATE
-            freq = n / T
+            freq = np.fft.fftfreq(audio_data.size, 1 / RATE)
+            # N = len(fft)
+            # n = np.arange(N)
+            # T = N / RATE
+            # freq = n / T
             min_freq_ind = np.argmin(np.abs(freq - 20))
             max_freq_ind = np.argmin(np.abs(freq - 20000))
             self.fft_data_signal.emit(
