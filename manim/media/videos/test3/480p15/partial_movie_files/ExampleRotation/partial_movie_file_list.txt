@@ -1,0 +1,2 @@
+# This file is used internally by FFMPEG.
+file 'file:/Users/matteotex/Documents/VSC/matteotex/Python_workout/manim/media/videos/test3/480p15/partial_movie_files/ExampleRotation/931832650_63209373_2969017746.mp4'
