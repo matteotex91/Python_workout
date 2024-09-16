@@ -1,8 +1,6 @@
 import pyaudio
 import numpy as np
 import matplotlib.pyplot as plt
-import pickle
-import os
 from audio.datasets.data_manager import load_transferfunction, save_transferfunction
 
 

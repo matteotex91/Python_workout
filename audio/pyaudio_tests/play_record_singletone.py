@@ -1,8 +1,7 @@
 import pyqtgraph as pg
 import pyaudio
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from PyQt5.QtCore import pyqtSignal, QEvent, QThread, QObject, QMutex
-from PyQt5.QtGui import QMouseEvent
+from PyQt5.QtCore import pyqtSignal, QThread, QObject, QMutex
 import sys
 import numpy as np
 from time import sleep
@@ -51,7 +50,7 @@ class ListenerTask(QObject):
                 pyaudio.paContinue if self.running > 0 else pyaudio.paAbort,
             )
 
-        stream_in = audio.open(
+        _ = audio.open(
             format=FORMAT,
             channels=CHANNELS,
             rate=RATE,

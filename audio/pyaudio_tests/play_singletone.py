@@ -1,6 +1,5 @@
 import numpy as np
 import pyaudio
-import matplotlib.pyplot as plt
 
 CHUNK = 1024
 CHUNKS = 100

@@ -3,12 +3,11 @@ import numpy as np
 from time import sleep
 
 CHUNK = 1024
-CHUNKS = 50
+CHUNKS = 200
 RATE = 44100
 FORMAT = pyaudio.paInt16
 CHANNELS = 1
-AMP = np.int16(1000)
-FREQUENCY = 440  # Hz
+AMP = np.int16(100)
 FORMAT = pyaudio.paInt16
 audio = pyaudio.PyAudio()
 
@@ -28,8 +27,8 @@ def acquire():
     def callback(in_data, frame_count, time_info, flag):
         global chunk_count, stream, AMP
         audio_data = np.frombuffer(buffer=in_data, count=frame_count, dtype=np.int16)
-        audio_data = AMP / np.max(audio_data)
-        stream.write(audio_data, len(audio_data))
+        norm_audio_data = audio_data
+        stream.write(norm_audio_data, len(norm_audio_data))
         chunk_count -= 1
         return (
             in_data,
@@ -44,6 +43,7 @@ def acquire():
         stream_callback=callback,
         frames_per_buffer=CHUNK,
     )
+    sleep(5)
     stream.close()
 
 
